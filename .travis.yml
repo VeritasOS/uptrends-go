@@ -1,0 +1,10 @@
+language: go
+go:
+  - 1.9.2
+  - latest
+script:
+  - go get -u golang.org/x/tools/cmd/goimports && goimports -l -d .
+  - gofmt -l -d -s .
+  - go get -u github.com/golang/lint/golint && golint ./...
+  - go vet ./...
+  - cd uptrends && go test -v -cover
